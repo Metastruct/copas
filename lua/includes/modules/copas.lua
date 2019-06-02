@@ -467,6 +467,7 @@ local _skt_mt_tcp = {
 
                    -- TODO: is this DNS related? hence blocking?
                    getsockname = function(self, ...) return self.socket:getsockname(...) end,
+                   setsockname = function(self, ...) return self.socket:setsockname(...) end,
 
                    getstats = function(self, ...) return self.socket:getstats(...) end,
 
@@ -480,6 +481,7 @@ local _skt_mt_tcp = {
                    
                    -- TODO: is this DNS related? hence blocking?
                    getpeername = function(self, ...) return self.socket:getpeername(...) end,
+                   setpeername = function(self, ...) return self.socket:setpeername(...) end,
 
                    shutdown = function(self, ...) return self.socket:shutdown(...) end,
 
@@ -513,7 +515,9 @@ _skt_mt_udp.__index.receivefrom = function (self, size)
                    
                                   -- TODO: is this DNS related? hence blocking?
 _skt_mt_udp.__index.getpeername = function(self, ...) return self.socket:getpeername(...) end
+_skt_mt_udp.__index.setpeername = function(self, ...) return self.socket:setpeername(...) end
 
+_skt_mt_udp.__index.getsockname = function(self, ...) return self.socket:getsockname(...) end
 _skt_mt_udp.__index.setsockname = function(self, ...) return self.socket:setsockname(...) end
 
                                     -- do not close client, as it is also the server for udp.
